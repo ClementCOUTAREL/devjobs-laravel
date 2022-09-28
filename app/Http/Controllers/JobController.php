@@ -16,7 +16,7 @@ class JobController extends Controller
      */
     public function index()
     {
-
+        $this->authorize('viewAny', Job::class);
         $jobs = Job::where('user_id', auth()->user()->id)->get();
         
         return view('jobs.index',[
@@ -31,6 +31,8 @@ class JobController extends Controller
      */
     public function create()
     {
+
+        $this->authorize('create', Job::class);
         $categories = Category::all();
         $salaries = Salary::all();
         
@@ -57,20 +59,31 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Job $job)
     {
-        //
+        return view('jobs.show', [
+            'job' => $job
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Job $job)
     {
-        //
+
+        $this->authorize('update', $job);
+
+        $categories = Category::all();
+        $salaries = Salary::all();
+
+        return view('jobs.edit', [
+            'salaries'=> $salaries,
+            'categories'=> $categories,
+            'job' => $job
+        ]);
     }
 
     /**

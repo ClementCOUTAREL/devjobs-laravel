@@ -20,5 +20,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [JobController::class, 'index'])->middleware(['auth', 'verified'])->name('offer.index');
 Route::get('/offer/create', [JobController::class, 'create'])->middleware(['auth', 'verified'])->name('offer.create');
+Route::get('/offer/{job}/edit', [JobController::class, 'edit'])->middleware(['auth', 'verified'])->name('offer.edit');
+Route::get('/offer/{job}', [JobController::class, 'show'])->name('offer.show');
 
 require __DIR__.'/auth.php';

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\JobSeeder;
 use Illuminate\Database\Seeder;
 use Database\Seeders\SalarySeeder;
 use Database\Seeders\CategorySeeder;
@@ -18,7 +19,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CategorySeeder::class,
-            SalarySeeder::class
+            SalarySeeder::class,
+            JobSeeder::class
         ]);
     }
 }

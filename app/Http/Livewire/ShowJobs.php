@@ -8,6 +8,13 @@ use Livewire\Component;
 class ShowJobs extends Component
 {
 
+    protected $listeners = ['deleteJob'];
+
+    public function deleteJob(Job $job)
+    {
+        $job->delete();
+    }
+
     public function render()
     {
 
