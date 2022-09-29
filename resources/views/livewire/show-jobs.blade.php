@@ -8,7 +8,7 @@
             <p class="text-sm py-2">Last Date: {{$job->last_date->format('d/m/y')}} </p>
         </div>
         <div class="flex flex-row gap-8">
-            <a href="{{route('offer.show', $job->id)}}">
+            <a href="{{route('candidates.index', $job->id)}}">
                 <x-primary-button class="bg-black hover:bg-black">
                     See candidates
                 </x-primary-button>

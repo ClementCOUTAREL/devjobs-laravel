@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Job;
 use Livewire\Component;
+use App\Notifications\NewCandidate;
 
 class ApplyJob extends Component
 {
@@ -33,9 +34,11 @@ class ApplyJob extends Component
             'user_id' => $user_id,
         ]);
 
-            session()->flash('message', "You applied for this job !!!");
+        $this->job->recruiter->notify(new NewCandidate($this->job->id, $this->job->title, auth()->user()->id));
 
-            return redirect()->back();
+        session()->flash('message', "You applied for this job !!!");
+
+        return redirect()->back();
     }
 
     public function render()

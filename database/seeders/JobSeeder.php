@@ -11,6 +11,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class JobSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -18,6 +19,8 @@ class JobSeeder extends Seeder
      */
     public function run()
     {
+        $recruiters_id = DB::table('users')->where('role',"2")->pluck('id');
+
         DB::table('jobs')->insert([
             'title' => 'React developper',
             'company' => 'Netflix',
@@ -25,7 +28,29 @@ class JobSeeder extends Seeder
             'category_id' => Category::all()->random()->id,
             'last_date' => date('Y-m-d H:i:s'),
             'description' => 'Amazing experience as a React dev' ,
-            'user_id' => User::all()->random()->id ,
+            'user_id' =>  $recruiters_id->random(),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+        DB::table('jobs')->insert([
+            'title' => 'Express developper',
+            'company' => 'Microsoft',
+            'salary_id' => Salary::all()->random()->id,
+            'category_id' => Category::all()->random()->id,
+            'last_date' => date('Y-m-d H:i:s'),
+            'description' => 'Amazing experience as a React dev' ,
+            'user_id' => $recruiters_id->random() ,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+        DB::table('jobs')->insert([
+            'title' => 'React Native developper',
+            'company' => 'Uber',
+            'salary_id' => Salary::all()->random()->id,
+            'category_id' => Category::all()->random()->id,
+            'last_date' => date('Y-m-d H:i:s'),
+            'description' => 'Amazing experience as a React dev' ,
+            'user_id' => $recruiters_id->random() ,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);

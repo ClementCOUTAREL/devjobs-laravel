@@ -16,9 +16,11 @@
                         <x-nav-link :href="route('offer.index')" :active="request()->routeIs('offer.index')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
+                        @if(auth()->user()->role == "2")
                         <x-nav-link :href="route('offer.create')" :active="request()->routeIs('offer.create')">
                             {{ __('Create job offer') }}
                         </x-nav-link>
+                        @endif
                     </div>
                 @endauth
 
@@ -37,6 +39,7 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @auth
+                
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">

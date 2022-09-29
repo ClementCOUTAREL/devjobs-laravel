@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Salary;
 use App\Models\Category;
 use App\Models\Candidate;
@@ -42,6 +43,11 @@ class Job extends Model
     public function isCandidate()
     {
         return $this->candidates->contains(auth()->user()->id);
+    }
+
+    public function recruiter()
+    {
+       return $this->belongsTo(User::class, 'user_id'); 
     }
 
 }
